@@ -18,8 +18,9 @@ A modern FastAPI application implementing best practices with SQLModel, Alembic 
 .
 ├── api/
 │   └── v1/
-│       ├── endpoints/
-│       │   └── users.py
+│       ├── [app_name]
+│       │   ├── service.py
+│       │   ├── route.py
 │       └── router.py
 ├── db/
 │   ├── migrations/
