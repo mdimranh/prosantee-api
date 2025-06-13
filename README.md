@@ -27,7 +27,8 @@ A modern FastAPI application implementing best practices with SQLModel, Alembic 
 │   │   └── env.py
 │   ├── base.py
 │   ├── config.py
-│   └── database.py
+│   ├── database.py
+│   └── db.py
 ├── models/
 │   └── [app_name].py
 ├── .env.example
