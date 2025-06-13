@@ -1,21 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from db.database import init_db
+from core.middleware import setup_middleware
 
 app = FastAPI(
-    title="FastAPI Application",
-    description="A FastAPI application with SQLModel and best practices",
+    title="IslamicQA",
+    description="Islamic Question and Answer API",
     version="1.0.0"
 )
 
-# CORS middleware configuration
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Setup middleware
+setup_middleware(app)
 
 @app.on_event("startup")
 async def on_startup():

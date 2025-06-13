@@ -20,9 +20,9 @@ class UserService(CRUDBase[User, UserCreate, UserUpdate]):
     async def create(self, db: AsyncSession, *, obj_in: UserCreate) -> User:
         db_obj = User(
             email=obj_in.email,
-            username=obj_in.username,
+            phone=obj_in.phone,
             hashed_password=self.get_password_hash(obj_in.password),
-            is_active=True
+            is_active=False
         )
         db.add(db_obj)
         await db.commit()
@@ -40,7 +40,9 @@ class UserService(CRUDBase[User, UserCreate, UserUpdate]):
     async def get_by_email(self, db: AsyncSession, *, email: str) -> Optional[User]:
         query = select(User).where(User.email == email)
         result = await db.execute(query)
-        return result.scalar_one_or_none()
+        user = result.scalar_one_or_none()
+        print("useer ----------------> ", user.dict())
+        return user
 
     async def is_active(self, user: User) -> bool:
         return user.is_active

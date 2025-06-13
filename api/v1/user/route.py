@@ -4,10 +4,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from db.database import get_session
 from models.user import User, UserCreate, UserUpdate, UserRead
 from .service import user_service
+from core.permissions import permissions, Permission
 
 router = APIRouter()
 
-@router.get("/", response_model=List[UserRead])
+@router.get("/", response_model=List[UserRead],  dependencies=[Depends(permissions([Permission.admin]))])
 async def read_users(
     db: AsyncSession = Depends(get_session),
     skip: int = 0,
