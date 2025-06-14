@@ -1,8 +1,8 @@
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-
 from core.utils.aes import AESCipher
 from models.user import User
+
 ACCESS_TOKEN_EXPIRE_MINUTES = 5
 
 class JWTTokenMiddleware(BaseHTTPMiddleware):

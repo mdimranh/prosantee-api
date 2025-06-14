@@ -41,7 +41,6 @@ class UserService(CRUDBase[User, UserCreate, UserUpdate]):
         query = select(User).where(User.email == email)
         result = await db.execute(query)
         user = result.scalar_one_or_none()
-        print("useer ----------------> ", user.dict())
         return user
 
     async def is_active(self, user: User) -> bool:

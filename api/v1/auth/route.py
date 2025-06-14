@@ -1,14 +1,16 @@
 import json
 from fastapi import APIRouter, Depends, Request, HTTPException
 from fastapi.responses import Response
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.v1.user.service import user_service
+from core.permissions.decorator import permissions
+from core.permissions.registry import Permission
 from core.utils.aes import AESCipher
 from db.database import get_session
 
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 router = APIRouter()
